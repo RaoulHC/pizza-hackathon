@@ -15,11 +15,11 @@ print "H = ", H
 # Now get the pizza as a matrix
 pizza = []
 for line in lines[1:]:
-	line = line.replace('T','0 ')
-	line = line.replace('M','1 ')
-	line = line.replace('\n','')
-	line = line[:-1]
-	pizza.append([ int(s) for s in line.split(' ')])
+    line = line.replace('T','0 ')
+    line = line.replace('M','1 ')
+    line = line.replace('\n','')
+    line = line[:-1]
+    pizza.append([ int(s) for s in line.split(' ')])
 
 # convert to a numpy array 
 pizza = np.array(pizza)
@@ -29,4 +29,9 @@ print pizza
 
 # PROCESS THE PIZZA
 
+
 # SAVE THE RESULT
+
+
+def evaluate_slices(pizza):
+    return None
