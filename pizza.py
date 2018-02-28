@@ -1,8 +1,8 @@
 import numpy as np
-from Minimize import 
+# from Minimize import  minimize
 
 # LOAD THE INPUT 
-with open('example.in','r') as f:
+with open('harder_example.in','r') as f:
     lines = f.readlines()
 
 # First line is R C L H 
@@ -20,6 +20,7 @@ for line in lines[1:]:
     line = line.replace('M','1 ')
     line = line.replace('\n','')
     line = line[:-1]
+
     pizza.append([ int(s) for s in line.split(' ')])
 
 # convert to a numpy array 
