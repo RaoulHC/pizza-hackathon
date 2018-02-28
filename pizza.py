@@ -1,4 +1,5 @@
 import numpy as np
+from Minimize import 
 
 # LOAD THE INPUT 
 with open('example.in','r') as f:
@@ -26,12 +27,21 @@ pizza = np.array(pizza)
 print "PIZZA: "
 print pizza
 
+#find  K
+N_1 = np.count_nonzero(pizza)
+N_0 = pizza.shape[0]*pizza.shape[1] - N_1
+K = min(N_0,N_1)
+print "K = ",K 
 
 # PROCESS THE PIZZA
+prefence_list = []
+solutions =  {}
+for pref in preference_list:
+    # 
+    slices[pref], marked_pizza = evaluate_minimum_sized_slices(pizza,pref)
+
+    #
+    solution[pref] = maximise(pizza,marked_pizza, slices[pref])
 
 
 # SAVE THE RESULT
-
-
-def evaluate_slices(pizza):
-    return None
