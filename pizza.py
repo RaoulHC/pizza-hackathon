@@ -1,5 +1,6 @@
 import numpy as np
-# from Minimize import  minimize
+from itertools import permutations
+from Minimize import  minimize
 
 # LOAD THE INPUT 
 with open('harder_example.in','r') as f:
@@ -36,10 +37,15 @@ print "K = ",K
 
 # PROCESS THE PIZZA
 prefence_list = []
-solutions =  {}
-for pref in preference_list:
+perms = set()
+for perm in permutations([1,2,3,4]):
+    perms.add(perm)
+
+for pref in perms:
+    print "Evaluation permuation: ", pref
+
     # 
-    slices[pref], marked_pizza = evaluate_minimum_sized_slices(pizza,pref)
+    slices[pref], marked_pizza = minimize(pizza,pref)
 
     #
     solution[pref] = maximise(pizza,marked_pizza, slices[pref])
