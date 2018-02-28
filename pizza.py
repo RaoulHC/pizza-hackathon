@@ -1,9 +1,9 @@
 import numpy as np
 from itertools import permutations
-from Minimize import  minimize
+from Minimize import  find_lstar ,factors ,find_slice ,find_minimum_sized_slices
 
 # LOAD THE INPUT 
-with open('harder_example.in','r') as f:
+with open('example.in','r') as f:
     lines = f.readlines()
 
 # First line is R C L H 
@@ -33,22 +33,29 @@ print pizza
 N_1 = np.count_nonzero(pizza)
 N_0 = pizza.shape[0]*pizza.shape[1] - N_1
 K = min(N_0,N_1)
+type_of_k = 0 if N_0 < N_1 else 1
+
 print "K = ",K 
 
-# PROCESS THE PIZZA
-prefence_list = []
-perms = set()
-for perm in permutations([1,2,3,4]):
-    perms.add(perm)
+#form pairs from the factor list
+f_list =  factors(2*L)
+pair_list = []
+for i in xrange(int(len(f_list)/2)):
+    pair_list.append( [f_list[i],f_list[-(i+1)] ] )
+    pair_list.append( [f_list[-(i+1)],f_list[i] ] )
 
-for pref in perms:
-    print "Evaluation permuation: ", pref
+# Evaluate the seed locations for the possilbe arrays
+l_star_locations = find_lstar(pizza, type_of_k)
 
-    # 
-    slices[pref], marked_pizza = minimize(pizza,pref)
+for slice_size in pair_list:
+    print "Evaluation minimum sized solution: ", slice_size
 
+    # slices[pref], marked_pizza = 
+    slices = find_minimum_sized_slices(pizza,slice_size, l_star_locations,L,H)
+    print "FOUND ", len(slices), " SLICES:"
+    print slices
     #
-    solution[pref] = maximise(pizza,marked_pizza, slices[pref])
+    # solution[pref] = maximise(pizza,marked_pizza, slices[pref])
 
 
 # SAVE THE RESULT
